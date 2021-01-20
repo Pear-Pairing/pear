@@ -1,0 +1,35 @@
+{
+  "name": "pear",
+  "version": "1.0.0",
+  "description": "Pear is a pairing app designed for bootcamps to assist in generating pairs of students for pair coding exercises.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.prod.js",
+    "build-dev": "webpack --config webpack.dev.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pear-Pairing/pear.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pear-Pairing/pear/issues"
+  },
+  "homepage": "https://github.com/Pear-Pairing/pear#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.16.0",
+    "webpack-cli": "^4.4.0",
+    "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
