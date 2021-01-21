@@ -6,7 +6,7 @@ import Main from './Main';
 const reducer = (state, changes) => ({...state, ...changes});
 
 const App = (props) => {
-  const [session, setSession] = useReducer(reducer, {id:123});
+  const [session, setSession] = useReducer(reducer, {});
 
   /***** USE THIS INSTEAD OF setSession *****/
   // It behaves the same way as useState's "setSesssion" would.
