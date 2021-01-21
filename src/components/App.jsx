@@ -1,17 +1,29 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import { createGlobalStyle } from 'styled-components';
+import Session from './Session';
 
 const App = (props) => {
+  const [session, setSession] = useState(null);
+
   return (
-    <Container>
-      <div className="main">
-            Hello World.
-      </div>
-    </Container>
+    <React.Fragment>
+      <Wrapper />
+      {session
+        ? null
+        : <Session setSession={setSession}/>
+      }
+    </React.Fragment>
   )
 }
-
-const Container = styled.div`
-  color: red;
+const Wrapper = createGlobalStyle`
+  body {
+    background: #ece9e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+  }
 `
 export default App;
