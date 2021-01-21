@@ -20,6 +20,7 @@ const table = "Pear";
 
 // declare a new express app
 var app = express()
+app.use(bodyParser.json());
 app.use(awsServerlessExpressMiddleware.eventContext())
 
 // Enable CORS for all methods
@@ -49,8 +50,10 @@ app.get("/api/session/:id", (req, res) => {
     });
 });
 
-app.post("/api/session/", bodyParser.json(), (req, res) => {
+app.post("/api/session/", (req, res) => {
   const session = req.body;
+
+  console.log(`POST body: ${JSON.stringify(session)}`);
 
   const doc = {
     TableName: table,
