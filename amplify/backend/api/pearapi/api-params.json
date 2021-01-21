@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/api/session",
+            "lambdaFunction": "PearSession",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/api/session"
+        }
+    ],
+    "resourceName": "pearapi",
+    "apiName": "pearapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "PearSession"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-pear-dev-151623-authRole",
+        "unAuthRoleName": "amplify-pear-dev-151623-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "PearSession",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

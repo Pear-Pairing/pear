@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-pear-dev-151623-authRole",
+      "UnauthRoleArn": "arn:aws:iam::593306021360:role/amplify-pear-dev-151623-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::593306021360:role/amplify-pear-dev-151623-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-pear-dev-151623-deployment",
+      "UnauthRoleName": "amplify-pear-dev-151623-unauthRole",
+      "StackName": "amplify-pear-dev-151623",
+      "StackId": "arn:aws:cloudformation:us-west-2:593306021360:stack/amplify-pear-dev-151623/857f5d30-5b75-11eb-ab36-061401d3c053",
+      "AmplifyAppId": "d3bd19gaub9io7"
+    },
+    "categories": {
+      "storage": {
+        "Pear": {
+          "tableName": "Pear",
+          "region": "us-west-2",
+          "arn": "arn:aws:dynamodb:us-west-2:593306021360:table/Pear",
+          "partitionKeyName": "id",
+          "partitionKeyType": "S"
+        }
+      }
+    }
+  }
+}

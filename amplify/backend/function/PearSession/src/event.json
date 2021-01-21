@@ -1,0 +1,7 @@
+{
+  "httpMethod": "POST",
+  "body": "{\"id\": \"hrsea14\"}",
+  "path": "/api/session",
+  "resource": "/{proxy+}",
+  "queryStringParameters": {}
+}
