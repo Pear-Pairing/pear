@@ -3,10 +3,18 @@ import styled from 'styled-components';
 
 const Session = ({ setSession }) => {
   const [sessionExist, setSessionExist] = useState(false);
-  const [sessionID, setSessionID] = useState("");
+  const [newSession, setNewSession] = useState(false);
+  const [sessionID, setSessionID] = useState('');
+  const [validInput, setValidInput] = useState(true);
 
-  const handleNewSessionButton = () => {
-
+  const createNewSession = (id) => {
+    if (id.length >= 3 && id.length <= 8 && (/[a-zA-Z0-9]/).test(id)) {
+      setValidInput(true);
+      setSession({id: sessionID});
+    } else {
+      setValidInput(false);
+      setSessionID('')
+    }
   }
 
   return (
@@ -14,18 +22,27 @@ const Session = ({ setSession }) => {
       <Welcome>
         <WelcomeText>pear</WelcomeText>
       </Welcome>
-        {sessionExist
-        ?
+        {!sessionExist && !newSession &&
+          <AskSession>
+            <CreateNewSessionButton onClick={() => setNewSession(true)}>New Session</CreateNewSessionButton>
+            <UseExistingSessionButton onClick={() => setSessionExist(true)}>Existing Session</UseExistingSessionButton>
+          </AskSession>}
+
+        {sessionExist && !newSession &&
         <AskSession>
           <Input placeholder="Enter a existing ID" value={sessionID} onChange={e => setSessionID(e.target.value)}></Input>
-          <SubmitSessionButton onClick={() => setSession(sessionID)}>Submit</SubmitSessionButton>
-        </AskSession>
-        :
+          <SubmitSessionButton onClick={() => setSession({id: sessionID})}>Submit</SubmitSessionButton>
+        </AskSession>}
+
+        {newSession &&
         <AskSession>
-          <CreateNewSessionButton onClick={() => handleNewSessionButton()}>New Session</CreateNewSessionButton>
-          <UseExistingSessionButton onClick={() => setSessionExist(true)}>Existing Session</UseExistingSessionButton>
-        </AskSession>
-        }
+          {validInput
+          ? '* A session ID must be 3-8 characters'
+          : <InvalidID>Invalid ID format</InvalidID>}
+          <Input placeholder="Create a session ID" value={sessionID} onChange={e => setSessionID(e.target.value)}></Input>
+          <SubmitSessionButton onClick={() => createNewSession(sessionID)}>Submit</SubmitSessionButton>
+        </AskSession>}
+
     </Container>
   )
 }
@@ -94,5 +111,10 @@ const SubmitSessionButton = styled.button`
   border-radius: 10px;
   box-shadow: 1px 2px 5px rgb(120, 128, 146);
   width: 70%;
+`
+const InvalidID = styled.p`
+  margin-bottom: -5px;
+  color: red;
+  animation: shake 0.82s
 `
 export default Session;

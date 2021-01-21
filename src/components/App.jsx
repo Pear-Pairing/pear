@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import Session from './Session';
 import PairsView from './PairsView';
 import sampleData from '../../lib/sampleData/sampleData';
+import Main from './Main';
 
 const reducer = (state, changes) => ({...state, ...changes});
 
@@ -11,14 +12,14 @@ const App = (props) => {
 
   /***** USE THIS INSTEAD OF setSession *****/
   // It behaves the same way as useState's "setSesssion" would.
-  const updateSession = (changes) => setSession(session, changes);
+  const updateSession = (changes) => setSession(changes);
 
   let currentView = <div>View Error, check conditional on App.jsx</div>
 
   if (!session.id) {
     currentView = <Session setSession={updateSession} />;
   } else if (session.id && !session.possiblePairs) {
-    currentView = (<div>Placeholder Roster View</div>);
+    currentView = (<Main />);
   } else {
     currentView = <PairsView session={session} setSession={updateSession} />;
   }
@@ -26,6 +27,7 @@ const App = (props) => {
   return (
     <React.Fragment>
       <Wrapper />
+      {console.log(session)}
       {currentView}
     </React.Fragment>
   )
