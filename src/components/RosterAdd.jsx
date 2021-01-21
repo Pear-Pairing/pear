@@ -56,7 +56,7 @@ const RosterAdd = (props) => {
 
           <FieldDiv><AddRosterButton>Add Name to Roster</AddRosterButton></FieldDiv>
         </form>
-        <FieldDiv>{roster.length === 0 ? <GenerateButton disabled>Generate Sprints</GenerateButton> : <GenerateButton onClick={gernerateSprints} >Generate Sprints</GenerateButton>}</FieldDiv>
+        <FieldDiv>{roster.length === 0 ? <GenerateButtonDis disabled>Finalize Roster</GenerateButtonDis> : <GenerateButton onClick={gernerateSprints} >Finalize Roster</GenerateButton>}</FieldDiv>
 
       </Container>
       <Container>
@@ -124,6 +124,19 @@ const GenerateButton = styled.button`
   width: 70%;
   margin: 10px;
 `
+
+const GenerateButtonDis = styled.button`
+  background: linear-gradient(to bottom right, rgb(60, 122, 255), rgb(28, 85, 208));
+  border: 1px solid rgb(55, 66, 92);
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px rgb(120, 128, 146);
+  width: 70%;
+  margin: 10px;
+  opacity: 0.3;
+`
+
 const AddRosterButton = styled.button`
   border: 1px solid rgb(55, 66, 92);
   padding: 10px;
