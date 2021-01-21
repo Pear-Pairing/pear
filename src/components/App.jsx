@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Session from './Session';
+import Main from './Main';
 
 const App = (props) => {
   const [session, setSession] = useState(null);
@@ -9,7 +10,7 @@ const App = (props) => {
     <React.Fragment>
       <Wrapper />
       {session
-        ? null
+        ? <Main />
         : <Session setSession={setSession}/>
       }
     </React.Fragment>
