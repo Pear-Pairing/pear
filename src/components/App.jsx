@@ -15,7 +15,7 @@ const App = (props) => {
   return (
     <React.Fragment>
       <Wrapper />
-      {session
+      {session.id
         ? <Main />
         : <Session setSession={updateSession}/>
       }
