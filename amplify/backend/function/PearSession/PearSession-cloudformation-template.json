@@ -69,7 +69,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-pear-dev-151623-deployment",
-          "S3Key": "amplify-builds/PearSession-6d516a416e3038715849-build.zip"
+          "S3Key": "amplify-builds/PearSession-6b684770384e572b4e63-build.zip"
         }
       }
     },
