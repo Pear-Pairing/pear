@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import CurrentPairs from './CurrentPairs';
 
 const PairsView = (props) => {
   const { 
@@ -7,7 +8,8 @@ const PairsView = (props) => {
     session: {
       id,
       roster,
-      possiblePairs
+      possiblePairs,
+      currentPairs
     }
   } = props;
 
@@ -19,6 +21,11 @@ const PairsView = (props) => {
       <HistoryContainer>
         {}
       </HistoryContainer>
+      <PairsAndButton>
+        <CurrentPairs roster={roster} currentPairs={currentPairs}/>
+        <GeneratePairsBtn>Generate Pairs</GeneratePairsBtn>
+      </PairsAndButton>
+
     </Container>
   )
 };
@@ -63,9 +70,18 @@ const HistoryContainer = styled.div`
   overflow-y: scroll;
 `
 
-const PairsSet = styled.div`
+const PairsAndButton = styled.div`
   ${defaultStyles}
-  padding: 4px;
+  flex-direction: column;
+  border: none;
+  width: 100%;
+  height: 100%;
 `
+
+const GeneratePairsBtn = styled.button`
+  ${defaultStyles}
+  height: 50px;
+  margin-top: 10px;
+`;
 
 export default PairsView;
