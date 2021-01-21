@@ -8,7 +8,12 @@ const RosterAdd = (props) => {
   const [roster, setRoster] = useState([]);
   const [rosterName, setRosterName] = useState('')
   const [currentName, setCurrentName] = useState('');
+// roster should be a list of objects
 
+// roster [{
+    // id: roster.length
+    // name: Matt
+//}]
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentName.trim() !== '') {

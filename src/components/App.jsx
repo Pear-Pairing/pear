@@ -10,7 +10,7 @@ const App = (props) => {
 
   /***** USE THIS INSTEAD OF setSession *****/
   // It behaves the same way as useState's "setSesssion" would.
-  const updateSession = (changes) => setSession(session, changes); 
+  const updateSession = (changes) => setSession(session, changes);
 
   return (
     <React.Fragment>
