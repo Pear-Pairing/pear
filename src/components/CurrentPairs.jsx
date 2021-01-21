@@ -1,12 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import Pair from './Pair';
 
 const CurrentPairs = (props) => {
   const { roster, currentPairs } = props;
 
   return (
     <PairsContainer>
-      Pairs Container
+      {currentPairs.map((pairArr, index) => (
+        <Pair
+          key={`pair-${index}`}
+          roster={roster} 
+          pairArr={pairArr} 
+        />)
+      )
+      }
     </PairsContainer>
   )
 };
@@ -18,12 +26,12 @@ const defaultStyles = `
   align-items: center;
   border: 1px solid black;
   border-radius: 3px;
-  width: 75%;
-  height: 70%;
 `
 
 const PairsContainer = styled.div`
   ${defaultStyles}
+  width: 75%;
+  height: 70%;
 `
 
 export default CurrentPairs;
