@@ -33,7 +33,7 @@ const prePear = (nameArray) => {
   return results;
 }
 
-// const names = ['tom', 'nancy', 'drew', 'mike', 'liz','timmy','jeff','Nina'];
+// const names = ['tom', 'nancy', 'drew', 'mike', 'liz','timmy','jeff','Nina','a','b','c','e','t','g','q','i','u','7','8','9'];
 
 // console.log(prePear(names));
 
