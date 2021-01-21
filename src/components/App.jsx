@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Session from './Session';
 import Main from './Main';
 
+const reducer = (state, changes) => ({...state, ...changes});
+
 const App = (props) => {
-  const [session, setSession] = useState(null);
+  const [session, setSession] = useReducer(reducer, {});
+
+  /***** USE THIS INSTEAD OF setSession *****/
+  // It behaves the same way as useState's "setSesssion" would.
+  const updateSession = (changes) => setSession(session, changes); 
 
   return (
     <React.Fragment>
       <Wrapper />
-      {session
+      {session.id
         ? <Main />
-        : <Session setSession={setSession}/>
+        : <Session setSession={updateSession}/>
       }
     </React.Fragment>
   )
