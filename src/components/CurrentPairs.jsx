@@ -30,6 +30,7 @@ const defaultStyles = `
 
 const PairsContainer = styled.div`
   ${defaultStyles}
+  flex-direction: column;
   width: 75%;
   height: 70%;
 `

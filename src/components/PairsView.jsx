@@ -4,14 +4,12 @@ import CurrentPairs from './CurrentPairs';
 
 const PairsView = (props) => {
   const { 
-    session,
-    session: {
-      id,
-      roster,
-      possiblePairs,
-      currentPairs
-    }
-  } = props;
+    id,
+    roster,
+    possiblePairs,
+    currentPairs,
+    history
+  } = props.session;
 
   return (
     <Container>

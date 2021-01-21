@@ -31,12 +31,12 @@ const Container = styled.div`
 
 const LeftPerson = styled.div`
   ${defaultStyles}
-  background-color: rgba(163, 230, 156, 1);
+  background: rgba(163, 230, 156, 1);
 `;
 
 const RightPerson = styled.div`
   ${defaultStyles}
-  background-color: rgba(168, 130, 191, 1);
+  background: rgba(198, 155, 224, 1);
   margin-left: 10px;
 `;
 
