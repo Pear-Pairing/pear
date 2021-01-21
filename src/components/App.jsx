@@ -1,11 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const App = (props) => {
   return (
-    <div className="main">
-      React has loaded.
-    </div>
+    <Container>
+      <div className="main">
+            Hello World.
+      </div>
+    </Container>
   )
 }
 
+const Container = styled.div`
+  color: red;
+`
 export default App;
