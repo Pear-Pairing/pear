@@ -17,12 +17,13 @@ const RosterAdd = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentName.trim() !== '') {
-      setRoster(prevRoster => [...prevRoster, currentName]);
+      const person = {id: roster.length, name: currentName}
+      setRoster(prevRoster => [...prevRoster, person]);
     }
     setCurrentName('');
   }
   const gernerateSprints = () => {
-    console.log(shuffle(prePear(roster)));
+    console.log(shuffle(prePear(roster.map((item)=>item.id))));
     //TODO
     // once state is managed and passed down, the reult of shuffle(prePear(roster)) will
     // be saverd in the master roster, and the title of the roster will be saved as well
@@ -60,7 +61,7 @@ const RosterAdd = (props) => {
       </Container>
       <Container>
         <NameDiv2><NameText>Current Roster</NameText></NameDiv2 >
-       <RosterDiv><RosterList roster={roster} index={roster.length} /></RosterDiv>
+       <RosterDiv><RosterList roster={roster.map((item)=>item.name)} /></RosterDiv>
       </Container>
 
     </Wapper>
