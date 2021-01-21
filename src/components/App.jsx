@@ -1,14 +1,13 @@
 import React, { useReducer } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Session from './Session';
-import Main from './Main';
 import PairsView from './PairsView';
 import sampleData from '../../lib/sampleData/sampleData';
 
 const reducer = (state, changes) => ({...state, ...changes});
 
 const App = (props) => {
-  const [session, setSession] = useReducer(reducer, sampleData.PairsView);
+  const [session, setSession] = useReducer(reducer, {});
 
   /***** USE THIS INSTEAD OF setSession *****/
   // It behaves the same way as useState's "setSesssion" would.
