@@ -53,8 +53,6 @@ app.get("/api/session/:id", (req, res) => {
 app.post("/api/session/", (req, res) => {
   const session = req.body;
 
-  console.log(`POST body: ${JSON.stringify(session)}`);
-
   const doc = {
     TableName: table,
     Item: session
