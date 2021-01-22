@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const Session = ({ setSession }) => {
   const [sessionExist, setSessionExist] = useState(false);
@@ -9,11 +10,34 @@ const Session = ({ setSession }) => {
 
   const createNewSession = (id) => {
     if (id.length >= 3 && id.length <= 8 && (/[a-zA-Z0-9]/).test(id)) {
-      setValidInput(true);
-      setSession({id: sessionID});
+      id = id.toString();
+      axios.post('https://z3oa41ri13.execute-api.us-west-2.amazonaws.com/dev/api/session/', {
+        id: id
+      })
+      .then(() => getID(id))
+      .catch(err => console.log(err));
     } else {
       setValidInput(false);
-      setSessionID('')
+      setSessionID('');
+    }
+  }
+
+  const getID = (id) => {
+    id = id.toString();
+    if (id.length >= 3 && id.length <= 8 && (/[a-zA-Z0-9]/).test(id)) {
+      axios.get(`https://z3oa41ri13.execute-api.us-west-2.amazonaws.com/dev/api/session/${id}`)
+      .then(({data}) => {
+        if (data) {
+          setSession(data);
+        } else {
+          setValidInput(false);
+          setSessionID('');
+        }
+      })
+      .catch(err => console.log(err));
+    } else {
+      setValidInput(false);
+      setSessionID('');
     }
   }
 
@@ -30,8 +54,9 @@ const Session = ({ setSession }) => {
 
         {sessionExist && !newSession &&
         <AskSession>
+          {!validInput && <InvalidID>ID could not be found</InvalidID>}
           <Input placeholder="Enter a existing ID" value={sessionID} onChange={e => setSessionID(e.target.value)}></Input>
-          <SubmitSessionButton onClick={() => setSession({id: sessionID})}>Submit</SubmitSessionButton>
+          <SubmitSessionButton onClick={() => getID(sessionID)}>Submit</SubmitSessionButton>
         </AskSession>}
 
         {newSession &&

@@ -27,7 +27,6 @@ const App = (props) => {
   return (
     <React.Fragment>
       <Wrapper />
-      {console.log(session)}
       {currentView}
     </React.Fragment>
   )
