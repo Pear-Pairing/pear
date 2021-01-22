@@ -10,18 +10,14 @@ const reducer = (state, changes) => ({...state, ...changes});
 const App = (props) => {
   const [session, setSession] = useReducer(reducer, {});
 
-  /***** USE THIS INSTEAD OF setSession *****/
-  // It behaves the same way as useState's "setSesssion" would.
-  const updateSession = (changes) => setSession(changes);
-
   let currentView = <div>View Error, check conditional on App.jsx</div>
 
   if (!session.id) {
-    currentView = <Session setSession={updateSession} />;
+    currentView = <Session setSession={setSession} />;
   } else if (session.id && !session.possiblePairs) {
     currentView = (<Main />);
   } else {
-    currentView = <PairsView session={session} setSession={updateSession} />;
+    currentView = <PairsView session={session} setSession={setSession} />;
   }
 
   return (

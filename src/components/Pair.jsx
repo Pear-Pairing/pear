@@ -25,19 +25,23 @@ const Container = styled.div`
   ${defaultStyles}
   border: 1px solid black;
   border-radius: 3px;
-  padding: 3px;
   margin: 3px;
+  overflow: hide;
+  min-width: 300px;
 `;
 
 const LeftPerson = styled.div`
   ${defaultStyles}
   background: rgba(163, 230, 156, 1);
+  width: 50%;
+  padding: 3px;
 `;
 
 const RightPerson = styled.div`
   ${defaultStyles}
   background: rgba(198, 155, 224, 1);
-  margin-left: 10px;
+  width: 50%;
+  padding: 3px;
 `;
 
 export default Pair;

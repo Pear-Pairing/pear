@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import CurrentPairs from './CurrentPairs';
 
@@ -8,8 +8,43 @@ const PairsView = (props) => {
     roster,
     possiblePairs,
     currentPairs,
-    history
+    history = []
   } = props.session;
+  const { setSession } = props;
+
+  const [ nameInput, setNameInput ] = useState('');
+
+  const nameInputChangeHandler = ({ target: { value }}) => value.length < 32 ? setNameInput(value) : null;
+
+  const getNextPairs = () => {
+    const index = Math.floor(Math.random() * possiblePairs.length);
+    const nextPair = possiblePairs[index];
+
+    possiblePairs.splice(index, 1);
+    setSession({ possiblePairs: [...possiblePairs]});
+
+    return nextPair;
+  }
+
+  const generatePairsHandler = (event) => {
+    event.preventDefault();
+
+    const name = nameInput || `Group ${history.length + 1}`;
+    let nextPairs = getNextPairs();
+
+    console.log(`nextPairs: ${JSON.stringify(nextPairs)}`)
+
+    let newRecord = {
+      name,
+      pairs: nextPairs
+    }
+
+    let newHistory = [ newRecord, ...history ]
+
+    console.log(`newHistory: ${JSON.stringify(newHistory)}`)
+    setSession({ history: newHistory, currentPairs: nextPairs })
+    // update database
+  }
 
   return (
     <Container>
@@ -17,11 +52,21 @@ const PairsView = (props) => {
         Session ID: {id}
       </SessionId>
       <HistoryContainer>
-        {}
+        <HistoryTitle>History</HistoryTitle>
+        <HistoryList>
+          {}
+        </HistoryList>
       </HistoryContainer>
       <PairsAndButton>
         <CurrentPairs roster={roster} currentPairs={currentPairs}/>
-        <GeneratePairsBtn>Generate Pairs</GeneratePairsBtn>
+        <NameInput 
+          placeholder="Name these pairs"
+          value={nameInput}
+          onChange={nameInputChangeHandler}
+        ></NameInput>
+        <GeneratePairsBtn
+          onClick={generatePairsHandler}
+        >Generate Pairs</GeneratePairsBtn>
       </PairsAndButton>
 
     </Container>
@@ -58,15 +103,33 @@ const SessionId = styled.div`
 
 const HistoryContainer = styled.div`
   ${defaultStyles}
+  flex-direction: column;
+  justify-content: flex-start;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   left: 10px;
-  padding: 4px;
   width: 100px;
   height: 80%;
-  overflow-y: scroll;
+  border: none;
 `
+
+const HistoryTitle = styled.h3`
+  position: relative;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 3px;
+  top: 0;
+  width: 100%;
+`;
+
+const HistoryList =  styled.div`
+  ${defaultStyles}
+  padding: 4px;
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+`;
 
 const PairsAndButton = styled.div`
   ${defaultStyles}
@@ -80,6 +143,10 @@ const GeneratePairsBtn = styled.button`
   ${defaultStyles}
   height: 50px;
   margin-top: 10px;
+`;
+
+const NameInput = styled.input`
+  ${defaultStyles}
 `;
 
 export default PairsView;
