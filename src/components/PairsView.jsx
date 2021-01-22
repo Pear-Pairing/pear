@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import CurrentPairs from './CurrentPairs';
+import updateDb from '../scripts/updateDb';
 
 const PairsView = (props) => {
   const { 
@@ -10,7 +11,7 @@ const PairsView = (props) => {
     currentPairs,
     history = []
   } = props.session;
-  const { setSession } = props;
+  const { session, setSession } = props;
 
   const [ nameInput, setNameInput ] = useState('');
 
@@ -43,7 +44,7 @@ const PairsView = (props) => {
 
     console.log(`newHistory: ${JSON.stringify(newHistory)}`)
     setSession({ history: newHistory, currentPairs: nextPairs })
-    // update database
+    updateDb(session);
   }
 
   return (
@@ -147,6 +148,7 @@ const GeneratePairsBtn = styled.button`
 
 const NameInput = styled.input`
   ${defaultStyles}
+  padding: 2px;
 `;
 
 export default PairsView;
