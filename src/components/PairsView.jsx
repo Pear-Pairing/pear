@@ -48,7 +48,6 @@ const PairsView = (props) => {
       name,
       pairs: nextPairs
     }
-    console.log(nextPairs);
     let newHistory = [ newRecord, ...history ]
 
     setSession({ history: newHistory, currentPairs: newRecord })
