@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import CurrentPairs from './CurrentPairs';
+import { apiUrl } from '../config';
 
 const PairsView = (props) => {
   const { 
@@ -10,11 +12,21 @@ const PairsView = (props) => {
     currentPairs,
     history = []
   } = props.session;
-  const { setSession } = props;
+  const { session, setSession } = props;
 
   const [ nameInput, setNameInput ] = useState('');
 
   const nameInputChangeHandler = ({ target: { value }}) => value.length < 32 ? setNameInput(value) : null;
+
+  const updateDb = () => {
+    axios({
+      method: "POST",
+      body: session,
+      url: apiUrl
+    })
+      .then(() => console.log("Database Updated"))
+      .catch((err) => console.log(`Unable to update DB: ${err}`))
+  }
 
   const getNextPairs = () => {
     const index = Math.floor(Math.random() * possiblePairs.length);
@@ -147,6 +159,7 @@ const GeneratePairsBtn = styled.button`
 
 const NameInput = styled.input`
   ${defaultStyles}
+  padding: 2px;
 `;
 
 export default PairsView;
