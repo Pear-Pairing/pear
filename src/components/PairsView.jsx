@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import CurrentPairs from './CurrentPairs';
+import HistoryListItem from './HistoryListItem';
 import updateDb from '../scripts/updateDb';
 
 const PairsView = (props) => {
@@ -55,7 +56,12 @@ const PairsView = (props) => {
       <HistoryContainer>
         <HistoryTitle>History</HistoryTitle>
         <HistoryList>
-          {}
+          {history.map((record, index) => (
+            <HistoryListItem 
+              key={`record-${index}`}
+              setSession={setSession} 
+              record={record} 
+            />))}
         </HistoryList>
       </HistoryContainer>
       <PairsAndButton>
@@ -126,6 +132,8 @@ const HistoryTitle = styled.h3`
 
 const HistoryList =  styled.div`
   ${defaultStyles}
+  flex-direction: column;
+  justify-content: flex-start;
   padding: 4px;
   overflow-y: scroll;
   width: 100%;
