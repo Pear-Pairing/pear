@@ -15,7 +15,7 @@ const App = (props) => {
   if (!session.id) {
     currentView = <Session setSession={setSession} />;
   } else if (session.id && !session.possiblePairs) {
-    currentView = (<Main />);
+    currentView = (<Main setSession={setSession}/>);
   } else {
     currentView = <PairsView session={session} setSession={setSession} />;
   }

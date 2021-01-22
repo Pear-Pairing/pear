@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import RosterAdd from './RosterAdd.jsx'
 
-const Main = (props) => {
+const Main = ({setSession}) => {
   return (
-    // <div>hello</div>
-    <RosterAdd />
+    <RosterAdd setSession={setSession}/>
   )
 }
 export default Main;

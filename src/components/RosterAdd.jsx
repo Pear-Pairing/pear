@@ -4,7 +4,7 @@ import prePear from '../scripts/prePear.js';
 import shuffle from '../scripts/shuffle.js';
 import styled from 'styled-components';
 
-const RosterAdd = (props) => {
+const RosterAdd = ({setSession}) => {
   const [roster, setRoster] = useState([]);
   const [rosterName, setRosterName] = useState('')
   const [currentName, setCurrentName] = useState('');
@@ -23,7 +23,11 @@ const RosterAdd = (props) => {
     setCurrentName('');
   }
   const gernerateSprints = () => {
-    console.log(shuffle(prePear(roster.map((item)=>item.id))));
+    const pairs = shuffle(prePear(roster.map((item)=>item.id)));
+    setSession({
+      roster: roster,
+      possiblePairs: pairs
+    });
     //TODO
     // once state is managed and passed down, the reult of shuffle(prePear(roster)) will
     // be saverd in the master roster, and the title of the roster will be saved as well
