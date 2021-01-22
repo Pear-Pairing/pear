@@ -1,8 +1,8 @@
 // takes in an array of anmes, returns a list of sprints of unique pairs
 const prePear = (nameArray) => {
-  if (nameArray.length % 2 === 1) {
-    nameArray.push('SOLO')
-  }
+  // if (nameArray.length % 2 === 1) {
+  //   nameArray.push('SOLO')
+  // }
   const names = {};
   const sprints = {};
   names[nameArray[0]] = 0;

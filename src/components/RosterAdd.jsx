@@ -23,14 +23,15 @@ const RosterAdd = ({setSession}) => {
     setCurrentName('');
   }
   const gernerateSprints = () => {
-    const pairs = shuffle(prePear(roster.map((item)=>item.id)));
+    const finalRoster = [...roster];
+    if(finalRoster.length % 2 === 1){
+      finalRoster.push({id: finalRoster.length, name: "SOLO"})
+    }
+    const pairs = shuffle(prePear(finalRoster.map((item)=>item.id)));
     setSession({
-      roster: roster,
+      roster: finalRoster,
       possiblePairs: pairs
     });
-    //TODO
-    // once state is managed and passed down, the reult of shuffle(prePear(roster)) will
-    // be saverd in the master roster, and the title of the roster will be saved as well
   }
 
 
