@@ -9,8 +9,7 @@ const updateDb = debounce((session) => {
     data: session,
     url
   })
-    .then(() => console.log("Database Updated"))
     .catch((err) => console.log(`Unable to update DB: ${err}`))
-}, 4000)
+}, 1000)
 
 export default updateDb;
