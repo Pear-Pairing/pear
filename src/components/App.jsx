@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import Session from './Session';
 import PairsView from './PairsView';
 import sampleData from '../../lib/sampleData/sampleData';
-import Main from './Main';
+import RosterAdd from './RosterAdd';
 
 const reducer = (state, changes) => ({...state, ...changes});
 
@@ -15,7 +15,7 @@ const App = (props) => {
   if (!session.id) {
     currentView = <Session setSession={setSession} />;
   } else if (session.id && !session.possiblePairs) {
-    currentView = (<Main setSession={setSession}/>);
+    currentView = (<RosterAdd setSession={setSession}/>);
   } else {
     currentView = <PairsView session={session} setSession={setSession} />;
   }
