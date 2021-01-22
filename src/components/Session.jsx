@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import getExpires from '../scripts/getExpires';
 
 const Session = ({ setSession }) => {
   const [sessionExist, setSessionExist] = useState(false);
@@ -10,9 +11,10 @@ const Session = ({ setSession }) => {
 
   const createNewSession = (id) => {
     if (id.length >= 3 && id.length <= 8 && (/[a-zA-Z0-9]/).test(id)) {
-      id = id.toString();
+      id = id.toString().toUpperCase();
       axios.post('https://z3oa41ri13.execute-api.us-west-2.amazonaws.com/dev/api/session/', {
-        id: id
+        id: id,
+        expires: getExpires()
       })
       .then(() => getID(id))
       .catch(err => console.log(err));
@@ -23,7 +25,7 @@ const Session = ({ setSession }) => {
   }
 
   const getID = (id) => {
-    id = id.toString();
+    id = id.toString().toUpperCase();
     if (id.length >= 3 && id.length <= 8 && (/[a-zA-Z0-9]/).test(id)) {
       axios.get(`https://z3oa41ri13.execute-api.us-west-2.amazonaws.com/dev/api/session/${id}`)
       .then(({data}) => {
