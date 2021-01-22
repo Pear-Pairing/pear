@@ -8,7 +8,7 @@ import Main from './Main';
 const reducer = (state, changes) => ({...state, ...changes});
 
 const App = (props) => {
-  const [session, setSession] = useReducer(reducer, sampleData.PairsView);
+  const [session, setSession] = useReducer(reducer, {});
 
   let currentView = <div>View Error, check conditional on App.jsx</div>
 
