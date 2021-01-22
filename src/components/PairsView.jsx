@@ -11,18 +11,17 @@ const PairsView = (props) => {
     roster,
     possiblePairs,
     currentPairs,
-    history = []
+    history = [],
+    pairsIndex = 0
   } = props.session;
   const { session, setSession } = props;
 
   const [ nameInput, setNameInput ] = useState('');
-  const [ pairsIndex, setPairsIndex ] = useState(0);
 
   const nameInputChangeHandler = ({ target: { value }}) => value.length < 32 ? setNameInput(value) : null;
 
   const resetPossiblePairs = () => {
-    setPairsIndex(0);
-    setSession({ possiblePairs: shuffle(possiblePairs) });
+    setSession({ possiblePairs: shuffle(possiblePairs), pairsIndex: 0 });
     console.log(`Reset Triggered`);
   }
 
@@ -32,7 +31,7 @@ const PairsView = (props) => {
     if (pairsIndex + 1 >= possiblePairs.length) {
       resetPossiblePairs();
     } else {
-      setPairsIndex(pairsIndex + 1);
+      setSession({ pairsIndex: pairsIndex + 1 });
     }
 
     return nextPair;
