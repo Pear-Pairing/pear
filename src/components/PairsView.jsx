@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CurrentPairs from './CurrentPairs';
 import HistoryListItem from './HistoryListItem';
@@ -12,17 +12,17 @@ const PairsView = (props) => {
     possiblePairs,
     currentPairs,
     history = [],
-    pairsIndex = 0
+    pairsIndex
   } = props.session;
   const { session, setSession } = props;
 
   const [ nameInput, setNameInput ] = useState('');
+  const [ sendUpdate, setSendUpdate ] = useState(false);
 
   const nameInputChangeHandler = ({ target: { value }}) => value.length < 32 ? setNameInput(value) : null;
 
   const resetPossiblePairs = () => {
     setSession({ possiblePairs: shuffle(possiblePairs), pairsIndex: 0 });
-    console.log(`Reset Triggered`);
   }
 
   const getNextPairs = () => {
@@ -48,11 +48,17 @@ const PairsView = (props) => {
     }
 
     const newHistory = [ newRecord, ...history ]
-    const newSession = { ...session, history: newHistory, currentPairs: newRecord }
 
-    setSession(newSession)
-    updateDb(newSession);
+    setSession({ history: newHistory, currentPairs: newRecord })
+    setSendUpdate(true);
   }
+
+  useEffect(() => {
+    if (sendUpdate) {
+      updateDb(session);
+      setSendUpdate(false);
+    }
+  });
 
   return (
     <Container>
