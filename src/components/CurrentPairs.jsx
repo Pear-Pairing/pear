@@ -7,14 +7,15 @@ const CurrentPairs = (props) => {
 
   return (
     <PairsContainer>
-      {currentPairs.map((pairArr, index) => (
+      { !currentPairs
+      ? null
+      : currentPairs.map((pairArr, index) => (
         <Pair
           key={`pair-${index}`}
           roster={roster} 
           pairArr={pairArr} 
         />)
-      )
-      }
+      )}
     </PairsContainer>
   )
 };
@@ -24,8 +25,6 @@ const defaultStyles = `
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  border-radius: 3px;
 `
 
 const PairsContainer = styled.div`
