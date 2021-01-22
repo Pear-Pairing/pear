@@ -51,7 +51,7 @@ const PairsView = (props) => {
 
     let newHistory = [ newRecord, ...history ]
 
-    setSession({ history: newHistory, currentPairs: nextPairs })
+    setSession({ history: newHistory, currentPairs: newRecord })
     updateDb(session);
   }
 
