@@ -89,7 +89,7 @@ const Session = ({ setSession }) => {
           </AskSession>}
 
       </Container>)
-      }
+    }
 }
 
 const Container = styled.div`
