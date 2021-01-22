@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const HistoryListItem = (props) => {
   const { setSession, record } = props;
 
-  const onClickHandler = () => setSession({ currentPairs: record.pairs });
+  const onClickHandler = () => setSession({ currentPairs: record });
 
   return (
     <Container onClick={onClickHandler}>

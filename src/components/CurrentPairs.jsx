@@ -9,7 +9,7 @@ const CurrentPairs = (props) => {
     <PairsContainer>
       { !currentPairs
       ? null
-      : currentPairs.map((pairArr, index) => (
+      : currentPairs.pairs.map((pairArr, index) => (
         <Pair
           key={`pair-${index}`}
           roster={roster} 
