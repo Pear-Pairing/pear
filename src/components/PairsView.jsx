@@ -41,16 +41,17 @@ const PairsView = (props) => {
     event.preventDefault();
 
     const name = nameInput || `Pair Set ${history.length + 1}`;
-    let nextPairs = getNextPairs();
-
-    let newRecord = {
+    const nextPairs = getNextPairs();
+    const newRecord = {
       name,
       pairs: nextPairs
     }
-    let newHistory = [ newRecord, ...history ]
 
-    setSession({ history: newHistory, currentPairs: newRecord })
-    updateDb(session);
+    const newHistory = [ newRecord, ...history ]
+    const newSession = { ...session, history: newHistory, currentPairs: newRecord }
+
+    setSession(newSession)
+    updateDb(newSession);
   }
 
   return (
