@@ -6,7 +6,7 @@ import updateDb from '../scripts/updateDb';
 import shuffle from '../scripts/shuffle';
 
 const PairsView = (props) => {
-  const { 
+  const {
     id,
     roster,
     possiblePairs,
@@ -48,7 +48,7 @@ const PairsView = (props) => {
       name,
       pairs: nextPairs
     }
-
+    console.log(nextPairs);
     let newHistory = [ newRecord, ...history ]
 
     setSession({ history: newHistory, currentPairs: newRecord })
@@ -61,19 +61,19 @@ const PairsView = (props) => {
         Session ID: {id}
       </SessionId>
       <HistoryContainer>
-        <HistoryTitle>History</HistoryTitle>
         <HistoryList>
+          <HistoryTitle>History</HistoryTitle>
           {history.map((record, index) => (
-            <HistoryListItem 
+            <HistoryListItem
               key={`record-${index}`}
-              setSession={setSession} 
-              record={record} 
+              setSession={setSession}
+              record={record}
             />))}
         </HistoryList>
       </HistoryContainer>
       <PairsAndButton>
         <CurrentPairs roster={roster} currentPairs={currentPairs}/>
-        <NameInput 
+        <NameInput
           placeholder="Name these pairs"
           value={nameInput}
           onChange={nameInputChangeHandler}
@@ -111,7 +111,7 @@ const SessionId = styled.div`
   position: absolute;
   right: 5px;
   top: 5px;
-  padding: 4px;
+  padding: 20px;
   height: 20px;
 `;
 
@@ -122,10 +122,13 @@ const HistoryContainer = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 10px;
-  width: 100px;
+  left: 20px;
+  width: 130px;
   height: 80%;
   border: none;
+  background: #fff;
+  box-shadow: 5px 5px 5px 5px #3333331a;
+  border-radius: 5px;
 `
 
 const HistoryTitle = styled.h3`
@@ -145,6 +148,7 @@ const HistoryList =  styled.div`
   overflow-y: scroll;
   width: 100%;
   height: 100%;
+  border: none;
 `;
 
 const PairsAndButton = styled.div`
