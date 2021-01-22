@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CurrentPairs from './CurrentPairs';
 import HistoryListItem from './HistoryListItem';
 import updateDb from '../scripts/updateDb';
+import shuffle from '../scripts/shuffle';
 
 const PairsView = (props) => {
   const { 
@@ -15,15 +16,24 @@ const PairsView = (props) => {
   const { session, setSession } = props;
 
   const [ nameInput, setNameInput ] = useState('');
+  const [ pairsIndex, setPairsIndex ] = useState(0);
 
   const nameInputChangeHandler = ({ target: { value }}) => value.length < 32 ? setNameInput(value) : null;
 
-  const getNextPairs = () => {
-    const index = Math.floor(Math.random() * possiblePairs.length);
-    const nextPair = possiblePairs[index];
+  const resetPossiblePairs = () => {
+    setPairsIndex(0);
+    setSession({ possiblePairs: shuffle(possiblePairs) });
+    console.log(`Reset Triggered`);
+  }
 
-    possiblePairs.splice(index, 1);
-    setSession({ possiblePairs: [...possiblePairs]});
+  const getNextPairs = () => {
+    const nextPair = possiblePairs[pairsIndex];
+
+    if (pairsIndex + 1 >= possiblePairs.length) {
+      resetPossiblePairs();
+    } else {
+      setPairsIndex(pairsIndex + 1);
+    }
 
     return nextPair;
   }
@@ -31,10 +41,8 @@ const PairsView = (props) => {
   const generatePairsHandler = (event) => {
     event.preventDefault();
 
-    const name = nameInput || `Group ${history.length + 1}`;
+    const name = nameInput || `Pair Set ${history.length + 1}`;
     let nextPairs = getNextPairs();
-
-    console.log(`nextPairs: ${JSON.stringify(nextPairs)}`)
 
     let newRecord = {
       name,
@@ -43,7 +51,6 @@ const PairsView = (props) => {
 
     let newHistory = [ newRecord, ...history ]
 
-    console.log(`newHistory: ${JSON.stringify(newHistory)}`)
     setSession({ history: newHistory, currentPairs: nextPairs })
     updateDb(session);
   }
