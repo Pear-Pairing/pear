@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CurrentPairs from './CurrentPairs';
 import HistoryListItem from './HistoryListItem';
@@ -11,19 +11,18 @@ const PairsView = (props) => {
     roster,
     possiblePairs,
     currentPairs,
-    history = []
+    history = [],
+    pairsIndex
   } = props.session;
   const { session, setSession } = props;
 
   const [ nameInput, setNameInput ] = useState('');
-  const [ pairsIndex, setPairsIndex ] = useState(0);
+  const [ sendUpdate, setSendUpdate ] = useState(false);
 
   const nameInputChangeHandler = ({ target: { value }}) => value.length < 32 ? setNameInput(value) : null;
 
   const resetPossiblePairs = () => {
-    setPairsIndex(0);
-    setSession({ possiblePairs: shuffle(possiblePairs) });
-    console.log(`Reset Triggered`);
+    setSession({ possiblePairs: shuffle(possiblePairs), pairsIndex: 0 });
   }
 
   const getNextPairs = () => {
@@ -32,7 +31,7 @@ const PairsView = (props) => {
     if (pairsIndex + 1 >= possiblePairs.length) {
       resetPossiblePairs();
     } else {
-      setPairsIndex(pairsIndex + 1);
+      setSession({ pairsIndex: pairsIndex + 1 });
     }
 
     return nextPair;
@@ -42,17 +41,24 @@ const PairsView = (props) => {
     event.preventDefault();
 
     const name = nameInput || `Pair Set ${history.length + 1}`;
-    let nextPairs = getNextPairs();
-
-    let newRecord = {
+    const nextPairs = getNextPairs();
+    const newRecord = {
       name,
       pairs: nextPairs
     }
-    let newHistory = [ newRecord, ...history ]
+
+    const newHistory = [ newRecord, ...history ]
 
     setSession({ history: newHistory, currentPairs: newRecord })
-    updateDb(session);
+    setSendUpdate(true);
   }
+
+  useEffect(() => {
+    if (sendUpdate) {
+      updateDb(session);
+      setSendUpdate(false);
+    }
+  });
 
   return (
     <Container>
