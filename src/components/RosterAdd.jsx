@@ -30,7 +30,8 @@ const RosterAdd = ({setSession}) => {
     const pairs = shuffle(prePear(finalRoster.map((item)=>item.id)));
     setSession({
       roster: finalRoster,
-      possiblePairs: pairs
+      possiblePairs: pairs,
+      pairsIndex: 0
     });
   }
 
