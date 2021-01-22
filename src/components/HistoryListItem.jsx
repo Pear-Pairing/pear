@@ -20,10 +20,14 @@ const defaultStyles = `
   align-items: center;
   border: 1px solid black;
   border-radius: 3px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `
 
 const Container = styled.div`
   ${defaultStyles};
+  cursor: pointer;
 `;
 
 export default HistoryListItem;
