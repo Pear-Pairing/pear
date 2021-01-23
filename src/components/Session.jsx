@@ -46,7 +46,10 @@ const Session = ({ setSession }) => {
   return (
     <Container>
       <Welcome>
-        <WelcomeText>pear</WelcomeText>
+        <WelcomeImage 
+          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-full-sm.png" 
+          alt="Pear" 
+        />
       </Welcome>
         {!sessionExist && !newSession &&
           <AskSession>
@@ -84,6 +87,7 @@ const Container = styled.div`
   border-radius: 5px;
   height: 400px;
   width: 300px;
+  padding-top: 15px;
 `
 const Welcome = styled.div`
   display: flex;
@@ -92,9 +96,8 @@ const Welcome = styled.div`
   justify-content: center;
   width: 100%;
 `
-const WelcomeText = styled.h1`
-  font-size: 3em;
-  text-align: center;
+const WelcomeImage = styled.img`
+  width: 70%;
 `
 const AskSession = styled.div`
   display: flex;
