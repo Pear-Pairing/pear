@@ -91,7 +91,7 @@ const PairsView = (props) => {
         ></NameInput>
         <GeneratePairsBtn
           onClick={generatePairsHandler}
-        >Generate Pairs</GeneratePairsBtn>
+        >Pair them up!</GeneratePairsBtn>
       </PairsAndButton>
 
     </Container>
@@ -182,9 +182,13 @@ const PairsAndButton = styled.div`
 `
 
 const GeneratePairsBtn = styled.button`
-  ${defaultStyles}
-  height: 50px;
-  margin-top: 10px;
+  background: linear-gradient(to bottom right, rgb(60, 122, 255), rgb(28, 85, 208));
+  border: 1px solid rgb(55, 66, 92);
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px rgb(120, 128, 146);
+  margin: 10px;
 `;
 
 const NameInput = styled.input`
