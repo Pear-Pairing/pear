@@ -77,15 +77,15 @@ export default RosterAdd;
 const Wapper = styled.div`
 display: flex;
 flex-wrap: wrap;
+box-shadow: 5px 5px 5px 5px #3333331a;
+border-radius: 5px;
+background: #fff;
 `
 const Container = styled.div`
-  background: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 5px 5px 5px 5px #3333331a;
-  border-radius: 5px;
   height: 400px;
   width: 300px;
   padding: 20px;
