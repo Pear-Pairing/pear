@@ -38,6 +38,12 @@ const RosterAdd = ({setSession}) => {
 
   return (
     <Wapper>
+      <LogoContainer>
+        <PearLogo 
+          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-tn.png" 
+          alt="Pear Logo" 
+        />
+      </LogoContainer>
       <Container>
       <NameDiv><NameText>Please input names for the Roster</NameText></NameDiv>
         <form onSubmit={(e) => { handleSubmit(e) }}>
@@ -77,15 +83,32 @@ export default RosterAdd;
 const Wapper = styled.div`
 display: flex;
 flex-wrap: wrap;
+box-shadow: 5px 5px 5px 5px #3333331a;
+border-radius: 5px;
+background: #fff;
 `
+const LogoContainer = styled.div`
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  padding: 10px 0 0 20px;
+  width: 150px;
+`;
+const PearLogo = styled.img`
+  box-sizing: border-box;
+  width: 75px;
+  height: 75px;
+`;
 const Container = styled.div`
-  background: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 5px 5px 5px 5px #3333331a;
-  border-radius: 5px;
   height: 400px;
   width: 300px;
   padding: 20px;

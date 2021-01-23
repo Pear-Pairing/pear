@@ -17,7 +17,7 @@ const PairsView = (props) => {
   const { session, setSession } = props;
 
   const [ nameInput, setNameInput ] = useState('');
-  const [ sendUpdate, setSendUpdate ] = useState(false);
+  const [ sendUpdate, setSendUpdate ] = useState(true);
 
   const nameInputChangeHandler = ({ target: { value }}) => value.length < 32 ? setNameInput(value) : null;
 
@@ -65,17 +65,23 @@ const PairsView = (props) => {
       <SessionId>
         Session ID: {id}
       </SessionId>
-      <HistoryContainer>
-        <HistoryList>
-          <HistoryTitle>History</HistoryTitle>
-          {history.map((record, index) => (
-            <HistoryListItem
-              key={`record-${index}`}
-              setSession={setSession}
-              record={record}
-            />))}
-        </HistoryList>
-      </HistoryContainer>
+      <LeftCol>
+        <PearLogo 
+          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-tn.png" 
+          alt="Pear Logo" 
+        />
+        <HistoryContainer>
+          <HistoryList>
+            <HistoryTitle>History</HistoryTitle>
+            {history.map((record, index) => (
+              <HistoryListItem
+                key={`record-${index}`}
+                setSession={setSession}
+                record={record}
+              />))}
+          </HistoryList>
+        </HistoryContainer>
+      </LeftCol>
       <PairsAndButton>
         <CurrentPairs roster={roster} currentPairs={currentPairs}/>
         <NameInput
@@ -85,7 +91,7 @@ const PairsView = (props) => {
         ></NameInput>
         <GeneratePairsBtn
           onClick={generatePairsHandler}
-        >Generate Pairs</GeneratePairsBtn>
+        >Pair them up!</GeneratePairsBtn>
       </PairsAndButton>
 
     </Container>
@@ -111,6 +117,12 @@ const Container = styled.div`
   width: 100%;
 `;
 
+const PearLogo = styled.img`
+  width: 75px;
+  height: 75px;
+  margin: 10px 0 10px 0;
+`;
+
 const SessionId = styled.div`
   ${defaultStyles}
   position: absolute;
@@ -120,16 +132,21 @@ const SessionId = styled.div`
   height: 20px;
 `;
 
+const LeftCol = styled.div`
+  ${defaultStyles}
+  border: none;
+  flex-direction: column;
+  padding: 0 0 20px 20px;
+  height: 100vh;
+  width: 150px;
+`;
+
 const HistoryContainer = styled.div`
   ${defaultStyles}
   flex-direction: column;
   justify-content: flex-start;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 20px;
   width: 130px;
-  height: 80%;
+  height: 100%;
   border: none;
   background: #fff;
   box-shadow: 5px 5px 5px 5px #3333331a;
@@ -165,9 +182,13 @@ const PairsAndButton = styled.div`
 `
 
 const GeneratePairsBtn = styled.button`
-  ${defaultStyles}
-  height: 50px;
-  margin-top: 10px;
+  background: linear-gradient(to bottom right, rgb(60, 122, 255), rgb(28, 85, 208));
+  border: 1px solid rgb(55, 66, 92);
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px rgb(120, 128, 146);
+  margin: 10px;
 `;
 
 const NameInput = styled.input`
