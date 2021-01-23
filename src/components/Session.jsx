@@ -8,9 +8,11 @@ const Session = ({ setSession }) => {
   const [newSession, setNewSession] = useState(false);
   const [sessionID, setSessionID] = useState('');
   const [validInput, setValidInput] = useState(true);
+  const [submitted, setSubmitted] = useState(false);
 
   const createNewSession = (id) => {
     if (id.length >= 3 && id.length <= 8 && (/[a-zA-Z0-9]/).test(id)) {
+      setSubmitted(true);
       id = id.toString().toUpperCase();
       axios.post('https://z3oa41ri13.execute-api.us-west-2.amazonaws.com/dev/api/session/', {
         id: id,
@@ -25,8 +27,9 @@ const Session = ({ setSession }) => {
   }
 
   const getID = (id) => {
-    id = id.toString().toUpperCase();
     if (id.length >= 3 && id.length <= 8 && (/[a-zA-Z0-9]/).test(id)) {
+      setSubmitted(true);
+      id = id.toString().toUpperCase();
       axios.get(`https://z3oa41ri13.execute-api.us-west-2.amazonaws.com/dev/api/session/${id}`)
       .then(({data}) => {
         if (data) {
@@ -42,39 +45,53 @@ const Session = ({ setSession }) => {
       setSessionID('');
     }
   }
-
-  return (
-    <Container>
-      <Welcome>
+  if (submitted) {
+    return (
+      <Container>
         <WelcomeImage 
           src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-full-sm.png" 
           alt="Pear" 
         />
-      </Welcome>
-        {!sessionExist && !newSession &&
+        <ImageContainer>
+          <Image src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/loading.gif" alt="loading..."></Image>
+        </ImageContainer>
+      </Container>
+    )
+  } else {
+    return (
+      <Container>
+        <WelcomeImage 
+          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-full-sm.png" 
+          alt="Pear" 
+        />
+          {submitted &&
+            <Image src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/loading.gif" alt="loading..."></Image>
+          }
+          {!sessionExist && !newSession &&
+            <AskSession>
+              <CreateNewSessionButton onClick={() => setNewSession(true)}>New Session</CreateNewSessionButton>
+              <UseExistingSessionButton onClick={() => setSessionExist(true)}>Existing Session</UseExistingSessionButton>
+            </AskSession>}
+
+          {sessionExist && !newSession &&
           <AskSession>
-            <CreateNewSessionButton onClick={() => setNewSession(true)}>New Session</CreateNewSessionButton>
-            <UseExistingSessionButton onClick={() => setSessionExist(true)}>Existing Session</UseExistingSessionButton>
+            {!validInput && <InvalidID>ID could not be found</InvalidID>}
+            <Input placeholder="Enter a existing ID" value={sessionID} onChange={e => setSessionID(e.target.value)}></Input>
+            <SubmitSessionButton onClick={() => getID(sessionID)}>Submit</SubmitSessionButton>
+
           </AskSession>}
 
-        {sessionExist && !newSession &&
-        <AskSession>
-          {!validInput && <InvalidID>ID could not be found</InvalidID>}
-          <Input placeholder="Enter a existing ID" value={sessionID} onChange={e => setSessionID(e.target.value)}></Input>
-          <SubmitSessionButton onClick={() => getID(sessionID)}>Submit</SubmitSessionButton>
-        </AskSession>}
+          {newSession &&
+          <AskSession>
+            {validInput
+            ? '* A session ID must be 3-8 characters'
+            : <InvalidID>Invalid ID format</InvalidID>}
+            <Input placeholder="Create a session ID" value={sessionID} onChange={e => setSessionID(e.target.value)}></Input>
+            <SubmitSessionButton onClick={() => createNewSession(sessionID)}>Submit</SubmitSessionButton>
+          </AskSession>}
 
-        {newSession &&
-        <AskSession>
-          {validInput
-          ? '* A session ID must be 3-8 characters'
-          : <InvalidID>Invalid ID format</InvalidID>}
-          <Input placeholder="Create a session ID" value={sessionID} onChange={e => setSessionID(e.target.value)}></Input>
-          <SubmitSessionButton onClick={() => createNewSession(sessionID)}>Submit</SubmitSessionButton>
-        </AskSession>}
-
-    </Container>
-  )
+      </Container>)
+    }
 }
 
 const Container = styled.div`
@@ -146,5 +163,16 @@ const InvalidID = styled.p`
   margin-bottom: -5px;
   color: red;
   animation: shake 0.82s
+`
+const Image = styled.img`
+  width: 190px;
+  height: 150px;
+`
+const ImageContainer = styled.div`
+  display: flex;
+  flex: 3;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 `
 export default Session;
