@@ -4,7 +4,7 @@ const exportToTable = (currentPairs, roster, download) => {
   for (let i = 0; i < currentPairs.pairs.length; i++) {
     rows.push([roster[currentPairs.pairs[i][0]].name, roster[currentPairs.pairs[i][1]].name]);
   }
-  const csvContentRaw = rows.map(e => e.join(",")).join("\n");
+  const csvContentRaw = rows.map(e => e.join(", ")).join("\n");
   const csvContent = "data:text/csv;charset=utf-8,"
     + csvContentRaw;
 
@@ -18,7 +18,7 @@ const exportToTable = (currentPairs, roster, download) => {
     document.body.appendChild(link);
     link.click();
   } else {
-    document.getElementById("csvExport").value += csvContentRaw;
+    document.getElementById("csvExport").value = csvContentRaw;
   }
 
 }
