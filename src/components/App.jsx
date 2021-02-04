@@ -2,8 +2,8 @@ import React, { useReducer } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Session from './Session';
 import PairsView from './PairsView';
-import { withAuthenticator } from 'aws-amplify-react';
-import sampleData from '../../lib/sampleData/sampleData';
+import { Authenticator, SignIn, SignUp } from 'aws-amplify-react';
+import AmplifyTheme from '../amplify-themes/AuthTheme.js'
 import RosterAdd from './RosterAdd';
 import Amplify, { Auth } from 'aws-amplify';
 import awsconfig from '../aws-exports';
@@ -28,6 +28,8 @@ const App = (props) => {
     <React.Fragment>
       <Wrapper />
       {currentView}
+      <Authenticator theme={AmplifyTheme}>
+      </Authenticator>
     </React.Fragment>
   )
 }
