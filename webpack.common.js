@@ -9,6 +9,12 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.m?js/,
+        resolve: {
+          fullySpecified: false
+        }
+      },
+      {
         test: /\.m?(jsx|js)$/,
         exclude: /(node_modules|bower_components)/,
         use: {

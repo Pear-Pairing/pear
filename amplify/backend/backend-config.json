@@ -29,5 +29,13 @@
       "providerPlugin": "awscloudformation",
       "dependsOn": []
     }
+  },
+  "auth": {
+    "pearfa87e4eb": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
   }
 }
