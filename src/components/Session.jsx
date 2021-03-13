@@ -48,9 +48,9 @@ const Session = ({ setSession }) => {
   if (submitted) {
     return (
       <Container>
-        <WelcomeImage 
-          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-full-sm.png" 
-          alt="Pear" 
+        <WelcomeImage
+          src="https://pear01.s3-us-west-1.amazonaws.com/loginImg.png"
+          alt="Pear"
         />
         <ImageContainer>
           <Image src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/loading.gif" alt="loading..."></Image>
@@ -60,9 +60,9 @@ const Session = ({ setSession }) => {
   } else {
     return (
       <Container>
-        <WelcomeImage 
-          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-full-sm.png" 
-          alt="Pear" 
+        <WelcomeImage
+          src="https://pear01.s3-us-west-1.amazonaws.com/loginImg.png"
+          alt="Pear"
         />
           {submitted &&
             <Image src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/loading.gif" alt="loading..."></Image>
@@ -102,9 +102,10 @@ const Container = styled.div`
   justify-content: center;
   box-shadow: 5px 5px 5px 5px #3333331a;
   border-radius: 5px;
-  height: 400px;
-  width: 300px;
+  height: 80vh;
+  width: 30vw;
   padding-top: 15px;
+  overflow: hidden;
 `
 const Welcome = styled.div`
   display: flex;
@@ -114,7 +115,8 @@ const Welcome = styled.div`
   width: 100%;
 `
 const WelcomeImage = styled.img`
-  width: 70%;
+  width: 40vh;
+  height: 40vh;
 `
 const AskSession = styled.div`
   display: flex;
