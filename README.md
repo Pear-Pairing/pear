@@ -1,4 +1,4 @@
-<div align="center"><img src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-full.png" width="35%" height="35%"></img></div>
+<div align="center"><img src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-full.png" width="20%" height="20%"></img></div>
 
 Welcome to Pear!
 
