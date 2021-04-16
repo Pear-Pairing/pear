@@ -48,9 +48,9 @@ const Session = ({ setSession }) => {
   if (submitted) {
     return (
       <Container>
-        <WelcomeImage 
-          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-full-sm.png" 
-          alt="Pear" 
+        <WelcomeImage
+          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-full-sm.png"
+          alt="Pear"
         />
         <ImageContainer>
           <Image src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/loading.gif" alt="loading..."></Image>
@@ -60,9 +60,9 @@ const Session = ({ setSession }) => {
   } else {
     return (
       <Container>
-        <WelcomeImage 
-          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-full-sm.png" 
-          alt="Pear" 
+        <WelcomeImage
+          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-full-sm.png"
+          alt="Pear"
         />
           {submitted &&
             <Image src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/loading.gif" alt="loading..."></Image>

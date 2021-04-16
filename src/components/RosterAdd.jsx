@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import RosterList from './RosterList.jsx';
 import prePear from '../scripts/prePear.js';
+import prePear3 from '../scripts/prePear3.js';
 import shuffle from '../scripts/shuffle.js';
 import styled from 'styled-components';
 
@@ -34,14 +35,29 @@ const RosterAdd = ({setSession}) => {
       pairsIndex: 0
     });
   }
+  const gernerateSprintsFor3 = () => {
+    const finalRoster = [...roster];
+    if(finalRoster.length % 3 === 1){
+      finalRoster.push({id: finalRoster.length, name: "EXTRA1"});
+      finalRoster.push({id: finalRoster.length, name: "EXTRA2"});
+    } else if(finalRoster.length % 3 === 2){
+      finalRoster.push({id: finalRoster.length, name: "EXTRA1"});
+    }
+    const pairs = shuffle(prePear3(finalRoster.map((item)=>item.id)));
+    setSession({
+      roster: finalRoster,
+      possiblePairs: pairs,
+      pairsIndex: 0
+    });
+  }
 
 
   return (
     <Wapper>
       <LogoContainer>
-        <PearLogo 
-          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-tn.png" 
-          alt="Pear Logo" 
+        <PearLogo
+          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-tn.png"
+          alt="Pear Logo"
         />
       </LogoContainer>
       <Container>
@@ -68,7 +84,14 @@ const RosterAdd = ({setSession}) => {
 
           <FieldDiv><AddRosterButton>Add Name to Roster</AddRosterButton></FieldDiv>
         </form>
-        <FieldDiv>{roster.length === 0 ? <GenerateButtonDis disabled>Finalize Roster</GenerateButtonDis> : <GenerateButton onClick={gernerateSprints} >Finalize Roster</GenerateButton>}</FieldDiv>
+        <FieldDiv>
+          {roster.length === 0
+            ? <GenerateButtonDis disabled>Finalize Roster for 2</GenerateButtonDis> : (<GenerateButton onClick={gernerateSprints} >Finalize Roster for 2</GenerateButton>)
+          }
+          {roster.length === 0
+            ? <GenerateButtonDis disabled>Finalize Roster for 3</GenerateButtonDis> : (<GenerateButton onClick={gernerateSprintsFor3} >Finalize Roster for 3</GenerateButton>)
+          }
+        </FieldDiv>
 
       </Container>
       <Container>

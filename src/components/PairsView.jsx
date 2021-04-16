@@ -15,7 +15,6 @@ const PairsView = (props) => {
     pairsIndex
   } = props.session;
   const { session, setSession } = props;
-
   const [ nameInput, setNameInput ] = useState('');
   const [ sendUpdate, setSendUpdate ] = useState(true);
 
@@ -48,7 +47,6 @@ const PairsView = (props) => {
     }
 
     const newHistory = [ newRecord, ...history ]
-
     setSession({ history: newHistory, currentPairs: newRecord })
     setSendUpdate(true);
   }
@@ -66,9 +64,9 @@ const PairsView = (props) => {
         Session ID: {id}
       </SessionId>
       <LeftCol>
-        <PearLogo 
-          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-tn.png" 
-          alt="Pear Logo" 
+        <PearLogo
+          src="https://pear-pairing.s3-us-west-2.amazonaws.com/assets/pear-logo-tn.png"
+          alt="Pear Logo"
         />
         <HistoryContainer>
           <HistoryList>

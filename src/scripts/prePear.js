@@ -10,9 +10,7 @@ const prePear = (nameArray) => {
     names[nameArray[i + 1]] = 0;
     sprints[i] = {}
   }
-
   const results = Array.from(Array(nameArray.length - 1), () => []);
-
   // Since you only want pairs, there's no reason
   // to iterate over the last element directly
   for (let i = 0; i < nameArray.length - 1; i++) {

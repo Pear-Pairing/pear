@@ -5,11 +5,25 @@ const Pair = (props) => {
   const { roster, pairArr } = props;
   const firstPerson = roster[pairArr[0]];
   const secondPerson = roster[pairArr[1]];
+  const thirdPerson = roster[pairArr[2]];
 
   return (
     <Container>
-      <LeftPerson>{firstPerson.name}</LeftPerson>
-      <RightPerson>{secondPerson.name}</RightPerson>
+      {thirdPerson
+        ? (
+          <>
+            <LeftPerson>{firstPerson.name}</LeftPerson>
+            <RightPerson>{secondPerson.name}</RightPerson>
+            <LeftPerson>{thirdPerson.name}</LeftPerson>
+          </>
+        )
+        : (
+          <>
+            <LeftPerson>{firstPerson.name}</LeftPerson>
+            <RightPerson>{secondPerson.name}</RightPerson>
+          </>
+        )
+      }
     </Container>
   )
 }
